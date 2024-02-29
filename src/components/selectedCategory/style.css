@@ -1,0 +1,12 @@
+.profile-page {
+    /* max-width: 81%; */
+    border: 1px solid black;
+    /* margin: 30px auto; */
+    padding: 4%;
+}
+
+.heading {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
