@@ -26,7 +26,7 @@ const Register = () => {
         // const userData =user
      
 
-        const { data } = await axios.post('/api/v1/users/register' ,user)
+        const { data } = await axios.post('http://localhost:5000/signup' ,user)
         let message =data.message
         if(!data){
             toast.success(message, {
