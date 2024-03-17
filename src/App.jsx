@@ -7,6 +7,9 @@ import Login from './comman/userform/Login'
 import Register from './comman/userform/Register'
 import 'font-awesome/css/font-awesome.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Admin from './pages/Admin/Admin'
+import SelectedCategory from './components/selectedCategory/SelectedCategory'
+import AccordionAndCard from './components/AccordionAndCard/accordionAndCard'
 
 function App() {
   return (
@@ -16,8 +19,11 @@ function App() {
     <Routes>
 
       <Route path='/' element={<Home/>} ></Route>
+      <Route path='/adminHome' element={<Admin/>} ></Route>
       <Route path='/login' element={<Login/>} ></Route>
       <Route path='/register' element={<Register/>} ></Route>
+      <Route path='/selectedCategory' element={<SelectedCategory/>} ></Route>
+      <Route path='/accordionAndCard' element={<AccordionAndCard/>} ></Route>
 
     </Routes>
     </Router>

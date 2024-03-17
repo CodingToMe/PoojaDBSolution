@@ -55,11 +55,11 @@ function Navbar() {
             </li> */}
           </ul>
             <div  className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                <Link to={'/login'} className="text-white">Login</Link>
+                <Link to={'/login'} className="text-white" >Login</Link>
                 <Link to={'/register'}
                 className="text-white text-decoration-none px-3 py-1 rounded-4"
                 style={{backgroundColor:"#f94ca4 "}}
-                >sign Up</Link>
+                >Sign Up</Link>
                 
             </div>
         </div>
@@ -70,3 +70,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+

@@ -14,7 +14,6 @@ function Home() {
       {/* <AccordionAndCard></AccordionAndCard> */}
       {/* <SelectedCategory></SelectedCategory> */}
       <Carousels></Carousels>
-     
       <Cards></Cards>
       <Features></Features>
       <MultiCarousel></MultiCarousel>

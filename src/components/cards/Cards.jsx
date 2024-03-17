@@ -1,6 +1,13 @@
 import React from 'react'
 import './cards.css'
+import { useNavigate } from 'react-router-dom'
 function Cards() {
+    const navigate =new useNavigate()
+
+    const navigateFun=()=>{
+        
+        navigate("/selectedCategory")
+    }
   return (
 
     <>
@@ -10,7 +17,7 @@ function Cards() {
     </div>
     <div class="row" style={{justifyContent: "center"}}>
         <div class="col-xl-2 col-lg-2 col-md-4 col-6 mt-3 box" >
-            <div class="card profile-header">
+            <div class="card profile-header" onClick={navigateFun}>
                 <div class="body">
                     <div class="col">
                         <div class="col-lg-4 col-md-4 col-12">
@@ -27,7 +34,7 @@ function Cards() {
             
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-6 mt-3 box" >
-            <div class="card profile-header">
+            <div class="card profile-header" onClick={navigateFun}>
                 <div class="body">
                     <div class="col">
                         <div class="col-lg-4 col-md-4 col-12">
@@ -44,7 +51,7 @@ function Cards() {
             
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-6 mt-3 box" >
-            <div class="card profile-header">
+            <div class="card profile-header"onClick={navigateFun}>
                 <div class="body">
                     <div class="col">
                         <div class="col-lg-4 col-md-4 col-12">
@@ -78,7 +85,7 @@ function Cards() {
             
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-6 mt-3 box" >
-            <div class="card profile-header">
+            <div class="card profile-header" onClick={navigateFun}>
                 <div class="body">
                     <div class="col">
                         <div class="col-lg-4 col-md-4 col-12">
@@ -95,14 +102,14 @@ function Cards() {
             
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-6 mt-3 box" >
-            <div class="card profile-header">
+            <div class="card profile-header" onClick={navigateFun}>
                 <div class="body">
                     <div class="col">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="profile-image float-md-right"> <img src="./assets/cardsimage/female-hair.jpg" alt=""/> </div>
                         </div>
                         <div className='mt-3 mb-3'>
-                          <span className=''>Salon At Home</span>
+                          <span className=''>Hair Studio</span>
                           </div>
 
                                
