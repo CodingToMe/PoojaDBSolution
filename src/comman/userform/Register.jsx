@@ -6,6 +6,8 @@ import axios from 'axios'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { postAPI } from '../../utils/apiCalling';
+import config from '../../utils/apiUrl';
 
 const Register = () => {
     const navigate =useNavigate()
@@ -24,39 +26,32 @@ const Register = () => {
      try{
 
         // const userData =user
-     
-
-        const { data } = await axios.post('/api/v1/users/register' ,user)
-        let message =data.message
-        if(!data){
-            toast.success(message, {
-                position: "top-right",
-                autoClose: 2000,
-                });
-            }
-        else{
-            localStorage.setItem("userData",JSON.stringify(data.data))
-            toast.success(message, {
-                position: "top-right",
-                autoClose: 2000,
-                });
-                setUser('')
-                setTimeout(()=>{
-                    navigate("/login")
-            },3000)                
-        }
-    }
-    catch(error){
-        console.log("dkjdkjl",error)
-        
-        let message =  error.response.data.message
-                
-        toast.error(message, {
+        const result = await postAPI(config.register, user)
+        console.log(result,"result")
+       if(result?.data  && result.code==200){
+        toast.success(result?.message, {
             position: "top-right",
             autoClose: 2000,
             });
-            
-        // console.log(error.response.data.message)
+            setTimeout(()=>{
+                navigate("/login")
+        },3000) 
+        }
+        else{
+            toast.warning(result?.message, {
+                position: "top-right",
+                // autoClose: 2000,
+                });
+        }
+       }
+
+       
+    catch(error){
+      console.log(error)
+      toast.warning("something wents worng", {
+        position: "top-right",
+        // autoClose: 2000,
+        });
     }
     }
   return (
@@ -91,7 +86,8 @@ const Register = () => {
                                     <div className="row">
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
-                                                <label className="form-label" htmlFor="firstName">First name</label>
+                                                <label className="form-label" htmlFor="firstName">First name </label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type="text" id="firstName" className="form-control"
                                                 name='firstName'
                                                  value={user.firstName || ''}
@@ -102,6 +98,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="lastName" >Last name</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type="text" id="lastName" className="form-control" 
                                                     required 
                                                     name='lastName'
@@ -115,6 +112,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="email">Email</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type="email" id="email" className="form-control" 
                                                   name='email'
                                                   value={user.email || ''}
@@ -126,6 +124,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="phoneNumber">Phone Number</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type='tel' id="phoneNumber" className="form-control"  maxlength="10"
                                                 name='phoneNumber'
                                                 required
@@ -140,6 +139,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="age">Age</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type='text' id="age" className="form-control"  
                                                 required
                                                 name='age'
@@ -151,6 +151,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label"  >Gender</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <br></br>
                                                 <div className="form-check form-check-inline">
                                                     <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" onChange={(e)=>handleInput(e)} />
@@ -173,6 +174,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="password">Password</label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type="password" id="password" className="form-control"
                                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" 
                                                 name='password'
@@ -186,6 +188,7 @@ const Register = () => {
                                         <div className="col-md-6 mb-4">
                                             <div className="form-outline">
                                                 <label className="form-label" htmlFor="conformPassword">Conform Password </label>
+                                                <span className='text-danger bold'> *</span>
                                                 <input type="password" id="conformPassword" className="form-control"
                                                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" 
                                                 name='conformPassword'

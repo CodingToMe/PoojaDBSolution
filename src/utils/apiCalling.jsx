@@ -12,25 +12,20 @@ const postConfig = {
 
 const postAPI = async (url, data) => {
     try {
-        console.log(data,url,"data,url")
+       
         const result = await axios({
             ...postConfig,
-            url: `${postConfig.baseUrl}/${url}`,
+            url: url,
             data
         });
-        console.log(result,"result");
-        const response = await result.json()
-        console.log(response,"response");
-        return {
-            status: response.status,
-            data: response.data
-        };
-    } catch (error) {
-        console.log(error);
-        return {
-            status: error.response ? error.response.status : 500,
-            data: error.response ? error.response.data : "Unknown Error"
-        };
+        const responseData = result.data;
+
+        console.log(responseData, "responseData");
+        return responseData
+    } catch (errors) {
+        let error
+        return  error= errors.response ? errors.response.data : "Unknown Error"
+    
     }
 };
 

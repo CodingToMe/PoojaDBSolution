@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { getAPI, postAPI } from '../../utils/apiCalling'
+import config from '../../utils/apiUrl'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const [data, setData] = React.useState([]) // set state to hold the result
@@ -43,24 +45,27 @@ const Login = () => {
     }
 
     try {
-      const result = await postAPI("users/login", datas)
+      const result = await postAPI(config.login, datas , { withCredentials: true })
       // const result = await axios.post('/api/v1/users/login',datas)
-      console.log(result, "response...")
-      if (response.status === 200) {
-
-        if (response.data.role == "Admin") {
-          navigate("/adminHome")
-        } else {
-          navigate("/")
-        }
-
-      }
-      else {
+      console.log(result.data, "response...")
+      if(result && result.code == 200){
+        let user =result.data.loggedInUser 
+        let token =result.data.accessToken
+        user?.role =='Admin'?navigate('/adminHome'):navigate('/') 
+        toast.success(result?.message , {position :"top-right"})
+        localStorage.setItem('user',JSON.stringify(user))
+        localStorage.setItem('token',JSON.stringify(token))
 
       }
+      else{
+        toast.warning(result?.message , {position :"top-right"})
+      }
+      
+      
     }
     catch (error) {
-      console.log("what your name", error)
+      console.log("error", error)
+      toast.warning("Someting wents wrong")
     }
   }
   return (
