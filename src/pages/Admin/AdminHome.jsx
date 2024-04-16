@@ -16,7 +16,7 @@ const AdminHome = () => {
 
     return (
         <>
-        <Sidebar></Sidebar>
+        {/* <Sidebar></Sidebar> */}
 
         {/* <BrowserRouter>
       <Sidebar>

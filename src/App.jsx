@@ -21,7 +21,7 @@ function App() {
   return (
     <>
     {<Router>
-    {/* <Navbar></Navbar> */}
+    <Navbar></Navbar>
     
     <Routes>
 
