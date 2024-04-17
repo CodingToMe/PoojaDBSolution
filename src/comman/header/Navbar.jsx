@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { getLocalUser } from "../../utils/auth";
+import AddCategoryModal from "../../modals/AddCategoryModal";
+
 function Navbar() {
   const user =getLocalUser()
-  console.log(user,"user")
+  const [show, setShow] = useState(false);
+  const [heading,setHeading]=useState('')
+  const handalModal=(e,heading)=>{
+    setShow(!show)
+    setHeading(heading)
+
+  }
+  
 
  
   return (
@@ -65,6 +74,7 @@ function Navbar() {
                 style={{backgroundColor:"#f94ca4 "}}
                 >Sign Up</Link>
                 
+                
             </div>
         </div>
       </div>
@@ -111,9 +121,9 @@ function Navbar() {
               Category
               </a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Add Category</a></li>
-                <li><a className="dropdown-item" href="#">Update Category</a></li>
-                <li><a className="dropdown-item" href="#">Delete Category</a></li>
+                <li className="dropdown-item" onClick={()=>handalModal("Add Category")}>Add Category</li>
+                <li className="dropdown-item">Update Category</li>
+                <li className="dropdown-item">Delete Category</li>
               </ul>
             </li>
             {/* sub category */}
@@ -145,11 +155,17 @@ function Navbar() {
                 style={{backgroundColor:"#f94ca4 "}}
                 >Sign Up</Link>
                 
+                
             </div>
         </div>
       </div>
     </div>
   </nav>}
+  <AddCategoryModal
+  show={show}
+  handalModal={handalModal}
+  heading={heading}
+  />
   </>
   );
 }
